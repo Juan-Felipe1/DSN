@@ -1,0 +1,8 @@
+# Design-Testing Squad Requirements
+# Shared with dispatch squad (no additional deps needed)
+# Inherits: tenacity, pybreaker, pydantic, rich, pyyaml
+
+# Optional future enhancements:
+# playwright>=1.40.0      # For automated interaction testing
+# pillow>=10.0.0          # For screenshot comparison
+# selenium>=4.0.0         # Alternative automation

@@ -1,0 +1,166 @@
+# Event Registry - All testable user interactions
+
+events:
+  mouse_events:
+    - id: click
+      name: "Single Click"
+      elements: "buttons, links, checkboxes, radio buttons, menu items"
+      severity_if_broken: "CRITICAL"
+
+    - id: dblclick
+      name: "Double Click"
+      elements: "grid rows, editable cells, text selections"
+      severity_if_broken: "HIGH"
+
+    - id: rightclick
+      name: "Right Click (Context Menu)"
+      elements: "grids, lists, custom controls"
+      severity_if_broken: "MEDIUM"
+
+    - id: hover
+      name: "Mouse Hover"
+      elements: "buttons, links, tooltips, menus"
+      severity_if_broken: "MEDIUM"
+
+    - id: scroll
+      name: "Mouse Scroll"
+      elements: "grids, lists, dropdowns, long forms"
+      severity_if_broken: "HIGH"
+
+    - id: dragdrop
+      name: "Drag & Drop"
+      elements: "sortable lists, kanban boards, custom controls"
+      severity_if_broken: "HIGH"
+
+  keyboard_events:
+    - id: keydown
+      name: "Key Down"
+      elements: "inputs, textareas, forms"
+      severity_if_broken: "HIGH"
+
+    - id: keyup
+      name: "Key Up"
+      elements: "inputs, textareas, forms"
+      severity_if_broken: "MEDIUM"
+
+    - id: enter
+      name: "Enter Key"
+      elements: "inputs (submit form), modals (close)"
+      severity_if_broken: "CRITICAL"
+
+    - id: escape
+      name: "Escape Key"
+      elements: "modals, dropdowns, search overlays"
+      severity_if_broken: "HIGH"
+
+    - id: tab
+      name: "Tab Key"
+      elements: "all form elements (tab order)"
+      severity_if_broken: "CRITICAL"
+
+    - id: shift_tab
+      name: "Shift+Tab (Reverse Tab)"
+      elements: "form elements (reverse navigation)"
+      severity_if_broken: "HIGH"
+
+    - id: ctrl_click
+      name: "Ctrl+Click (Multi-select)"
+      elements: "lists, checkboxes, tables"
+      severity_if_broken: "HIGH"
+
+    - id: shift_click
+      name: "Shift+Click (Range Select)"
+      elements: "lists, checkboxes, tables"
+      severity_if_broken: "HIGH"
+
+  focus_events:
+    - id: focus
+      name: "Focus (Element Focused)"
+      elements: "inputs, buttons, links"
+      severity_if_broken: "MEDIUM"
+
+    - id: blur
+      name: "Blur (Element Lost Focus)"
+      elements: "inputs (validation), fields (save)"
+      severity_if_broken: "HIGH"
+
+  form_events:
+    - id: change
+      name: "Change (Value Changed)"
+      elements: "inputs, combos, checkboxes, radios"
+      severity_if_broken: "CRITICAL"
+
+    - id: input
+      name: "Input (Character Typed)"
+      elements: "text inputs, textareas"
+      severity_if_broken: "HIGH"
+
+    - id: submit
+      name: "Submit (Form Submitted)"
+      elements: "form"
+      severity_if_broken: "CRITICAL"
+
+    - id: reset
+      name: "Reset (Form Reset)"
+      elements: "form"
+      severity_if_broken: "MEDIUM"
+
+  window_events:
+    - id: resize
+      name: "Window Resize"
+      elements: "responsive layouts"
+      severity_if_broken: "HIGH"
+
+    - id: orientationchange
+      name: "Orientation Change"
+      elements: "mobile layouts (portrait/landscape)"
+      severity_if_broken: "HIGH"
+
+  combinations:
+    - id: rapid_click
+      name: "Rapid Clicks"
+      test: "User clicks button 5 times quickly"
+      severity_if_broken: "HIGH"
+      expected: "Debounced (only 1 action executes)"
+
+    - id: ctrl_a_copy
+      name: "Ctrl+A (Select All) + Copy"
+      test: "User selects all text and copies"
+      severity_if_broken: "MEDIUM"
+      expected: "Text copied to clipboard"
+
+    - id: filter_change_rapid
+      name: "Multiple Filter Changes"
+      test: "User changes filter1, then filter2 rapidly"
+      severity_if_broken: "HIGH"
+      expected: "Results updated correctly (no race conditions)"
+
+# Edge Cases
+edge_cases:
+  - id: empty_input
+    description: "Submit form with empty required field"
+    severity: "CRITICAL"
+
+  - id: max_length
+    description: "Input exceeds max length"
+    severity: "HIGH"
+
+  - id: special_chars
+    description: "Input with special characters (< > & \" ')"
+    severity: "CRITICAL"
+
+  - id: unicode
+    description: "Unicode/emoji input"
+    severity: "MEDIUM"
+
+  - id: very_large_data
+    description: "Grid with 10,000+ rows"
+    severity: "HIGH"
+
+  - id: slow_network
+    description: "API takes 5+ seconds to respond"
+    severity: "MEDIUM"
+
+  - id: api_error
+    description: "API returns 500 error"
+    severity: "CRITICAL"

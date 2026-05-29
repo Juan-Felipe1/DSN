@@ -1,0 +1,376 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# DESIGN-TESTING SQUAD - Configuration
+# Version: 1.0.0
+# Purpose: Comprehensive UI/UX testing — design, events, flows, clicks, backend integration
+# ═══════════════════════════════════════════════════════════════════════════════
+
+name: design-testing
+version: 1.0.0
+
+pack:
+  name: design-testing
+  version: 1.0.0
+  short-title: Design-Testing Squad
+  description: >-
+    Intensive design and interaction testing squad. Receives a UI screen or component,
+    generates comprehensive test scenarios covering design/layout, events, user flows,
+    control states, forms, backend integration, and edge cases. Outputs structured
+    test documents (PASS/FAIL/N/A format) with severity scoring and sign-off tables.
+  author: Design QA Team
+  icon: "🧪"
+  slashPrefix: design-testing
+
+entry_agent: design-chief
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# THE 7 IMMUTABLE LAWS OF DESIGN-TESTING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+core_principles:
+  - name: "LAW #0: COBERTURA TOTAL"
+    rule: "Todo elemento visível tem pelo menos 1 cenário de teste. Zero elementos ignorados."
+
+  - name: "LAW #1: BINÁRIO"
+    rule: "Todo critério de aceite é PASS/FAIL. Nada de 'parcial', 'aproximado', ou 'funciona às vezes'."
+
+  - name: "LAW #2: ATOMIC SCENARIOS"
+    rule: "1 cenário = 1 comportamento testável. Não combinar múltiplos comportamentos."
+
+  - name: "LAW #3: SEVERITY"
+    rule: "Cada cenário tem severidade: Critical (bloqueia app), High (quebra feature), Medium (UX ruins), Low (cosmético)."
+
+  - name: "LAW #4: EDGE CASES FIRST"
+    rule: "Dados vazios, limites, caracteres especiais têm prioridade máxima. Casos felizes vêm depois."
+
+  - name: "LAW #5: COMBINAÇÕES"
+    rule: "Testar Estado × Evento × Dados = cobertura real. Não só caminho feliz."
+
+  - name: "LAW #6: REPORT PADRONIZADO"
+    rule: "Saída sempre PASS/FAIL/N/A com severity badges, notas, e sign-off table. Formato consistente."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TIER STRUCTURE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+tier_structure:
+  orchestrator:
+    agent: design-chief
+    minds: "Kent Beck + Alan Cooper"
+    role: "Recebe tela/componente, orquestra pipeline de testes, valida cobertura"
+
+  tier_0:
+    name: "Test Scope Validation"
+    agents:
+      - test-gate
+    mind: "W. Edwards Deming"
+    purpose: "Validar que o escopo é claro ANTES de gerar cenários (PDSA cycle)"
+
+  tier_1:
+    name: "Scenario Decomposition & Planning"
+    agents:
+      - scenario-planner
+    mind: "Gojko Adzic (BDD)"
+    purpose: "Decompor em cenários atômicos, mapear matriz de cobertura"
+
+  tier_2:
+    name: "Routing to Specialists"
+    agents:
+      - test-router
+    purpose: "Rotear cada cenário para especialista certo (design, events, flow, etc.)"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# COVERAGE AREAS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+coverage_areas:
+  - id: DESIGN
+    name: "Design & Layout"
+    focus: "posicionamento, espaçamento, cores, tipografia, responsive, alinhamento"
+    executor: visual-validator
+    typical_scenarios: 5-10
+
+  - id: EVENTS
+    name: "Events & Interactions"
+    focus: "click, dblclick, hover, focus, blur, change, submit, keydown, scroll, drag-drop"
+    executor: event-tester
+    typical_scenarios: 15-30
+
+  - id: FLOWS
+    name: "User Flows"
+    focus: "navegação, wizard steps, modais, tabs, breadcrumbs, redirects"
+    executor: flow-mapper
+    typical_scenarios: 8-15
+
+  - id: FORMS
+    name: "Forms & Validation"
+    focus: "campos obrigatórios, validações inline, mensagens de erro, masks, limites"
+    executor: form-validator
+    typical_scenarios: 10-20
+
+  - id: STATE
+    name: "Control State"
+    focus: "enabled/disabled, visible/hidden, loading, error, empty, readonly"
+    executor: state-inspector
+    typical_scenarios: 8-15
+
+  - id: BACKEND
+    name: "Backend Integration (Light)"
+    focus: "API responses na UI, loading states, error handling, data binding"
+    executor: api-probe
+    typical_scenarios: 5-10
+
+  - id: COMBINATIONS
+    name: "State × Event × Data"
+    focus: "Combinações reais: filtros múltiplos, cascading, edge cases"
+    executor: event-tester + form-validator
+    typical_scenarios: 10-25
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SEVERITY LEVELS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+severity_levels:
+  - id: CRITICAL
+    name: "Critical"
+    color: "🔴"
+    description: "Bloqueia uso da app ou resulta em dados perdidos"
+    examples: "Form não submete, botão não clica, dados apagados"
+    deployment: "MUST FIX"
+
+  - id: HIGH
+    name: "High"
+    color: "🟠"
+    description: "Feature quebrada ou UX severamente prejudicada"
+    examples: "Filtro não funciona, modal não fecha, validação errada"
+    deployment: "SHOULD FIX"
+
+  - id: MEDIUM
+    name: "Medium"
+    color: "🟡"
+    description: "Funciona mas UX é inconveniente"
+    examples: "Placeholder text incorreto, espaçamento errado, tab order confuso"
+    deployment: "NICE TO FIX"
+
+  - id: LOW
+    name: "Low"
+    color: "🟢"
+    description: "Cosmético, não afeta funcionalidade"
+    examples: "Cor de texto não exata, ícone minor, tooltip ausente"
+    deployment: "OPTIONAL"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SCENARIO TEMPLATES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+scenario_template:
+  required_fields:
+    - scenario_id
+    - description
+    - coverage_area
+    - severity
+    - preconditions
+    - steps
+    - expected_result
+  optional_fields:
+    - notes
+    - screenshot_path
+    - related_scenarios
+    - execution_time_ms
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# QUALITY GATES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+quality_gates:
+  - id: "QG-SCOPE"
+    name: "Scope Validation Gate"
+    transition: "Input → Planning"
+    type: "soft_block"
+    agent: test-gate
+    criteria:
+      - "Screen/component é claramente identificável"
+      - "Requisitos funcionais são conhecidos"
+      - "Dados de entrada disponíveis (mockups, screenshots)"
+      - "Escopo de testes definido (coverage areas)"
+    if_fails:
+      action: "Redirect com recomendação de clarificação"
+      rework_limit: 1
+
+  - id: "QG-COVERAGE"
+    name: "Coverage Gate"
+    transition: "Planning → Execution"
+    type: "hard_block"
+    agent: scenario-planner
+    criteria:
+      - "Todos os COVERAGE_AREAS têm cenários"
+      - "Mínimo 60+ cenários gerados"
+      - "Edge cases cobertos (vazio, limite, especial)"
+      - "Combinações críticas incluídas"
+      - "Severidade atribuída a cada cenário"
+    if_fails:
+      action: "Return para scenario-planner com gaps identificados"
+      rework_limit: 2
+
+  - id: "QG-EXECUTION"
+    name: "Execution Gate"
+    transition: "Execution → Report"
+    type: "hard_block"
+    agent: design-chief
+    criteria:
+      - "Todos os cenários executados ou marcados N/A"
+      - "PASS/FAIL/N/A atribuído a cada um"
+      - "Notas em cenários falhados"
+      - "Screenshots de falhas incluídas"
+      - "Sign-off table preenchida"
+    if_fails:
+      action: "Retry cenários falhados (max 2x)"
+      rework_limit: 2
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AGENTS REGISTRY
+# ═══════════════════════════════════════════════════════════════════════════════
+
+agents:
+  - name: design-chief
+    file: agents/design-chief.md
+    tier: orchestrator
+    minds: "Kent Beck + Alan Cooper"
+    role: "Orchestration and pipeline control"
+
+  - name: test-gate
+    file: agents/test-gate.md
+    tier: 0
+    mind: "W. Edwards Deming"
+    role: "Scope validation (PDSA)"
+
+  - name: scenario-planner
+    file: agents/scenario-planner.md
+    tier: 1
+    mind: "Gojko Adzic"
+    role: "Scenario decomposition (BDD)"
+
+  - name: test-router
+    file: agents/test-router.md
+    tier: 2
+    role: "Route scenarios to specialists"
+
+  - name: visual-validator
+    file: agents/visual-validator.md
+    specialist: design
+    role: "Design/Layout testing"
+
+  - name: event-tester
+    file: agents/event-tester.md
+    specialist: events
+    role: "Events and interactions"
+
+  - name: flow-mapper
+    file: agents/flow-mapper.md
+    specialist: flows
+    role: "User flow validation"
+
+  - name: form-validator
+    file: agents/form-validator.md
+    specialist: forms
+    role: "Form validation and fields"
+
+  - name: state-inspector
+    file: agents/state-inspector.md
+    specialist: state
+    role: "Control state verification"
+
+  - name: api-probe
+    file: agents/api-probe.md
+    specialist: backend
+    role: "Backend integration (light)"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CHECKLISTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+checklists:
+  - pre-test-gate.md
+  - design-coverage-gate.md
+  - event-coverage-gate.md
+  - flow-coverage-gate.md
+  - post-test-gate.md
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DATA FILES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+data:
+  - event-registry.yaml
+  - element-registry.yaml
+  - severity-rules.yaml
+  - test-patterns.yaml
+  - coverage-matrix.yaml
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TEMPLATES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+templates:
+  - test-plan-tmpl.yaml
+  - test-report-tmpl.md
+  - scenario-tmpl.md
+  - coverage-report-tmpl.md
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TASKS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+tasks:
+  - analyze-screen.md
+  - plan-scenarios.md
+  - generate-test-doc.md
+  - execute-scenarios.md
+  - report-results.md
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# WORKFLOWS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+workflows:
+  - wf-design-testing-main.yaml
+  - wf-design-testing-quick.yaml
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DEPENDENCIES & INTEGRATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+dependencies:
+  core_agents:
+    - agent: "@qa"
+      when: "Test execution and validation"
+
+  squad_agents:
+    - agent: "/dispatch:agents:dispatch-chief"
+      squad: "dispatch"
+      when: "Parallelize scenario execution across coverage areas"
+
+  integrations:
+    - tool: "playwright"
+      when: "Automated UI interaction (future)"
+    - tool: "screenshot-comparison"
+      when: "Visual regression detection (future)"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# OUTPUT FORMATS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+output_formats:
+  test_report:
+    description: "Full test execution report with scenarios, results, severity"
+    template: "templates/test-report-tmpl.md"
+    output_path: "_temp/design-testing/runs/{run_id}/test-report.md"
+
+  coverage_report:
+    description: "Coverage matrix by area (design, events, flows, forms, state, backend)"
+    template: "templates/coverage-report-tmpl.md"
+    output_path: "_temp/design-testing/runs/{run_id}/coverage-report.md"
+
+  test_plan:
+    description: "Test plan with all scenarios before execution"
+    template: "templates/test-plan-tmpl.yaml"
+    output_path: "_temp/design-testing/runs/{run_id}/test-plan.yaml"
