@@ -5,6 +5,7 @@
 | Squad | Status | Instalado | Versão |
 |-------|--------|-----------|--------|
 | **dispatch** | ✅ ATIVO | Sim | 1.0.0 |
+| **design-testing** | ✅ ATIVO | Sim | 1.0.0 |
 | apex | 📋 Disponível | Não | 1.0.0 |
 | brand | 📋 Disponível | Não | 1.0.0 |
 | curator | 📋 Disponível | Não | 1.0.0 |
@@ -36,6 +37,40 @@
 - Cost tracking e health scoring
 
 **Entrada:** `@dispatch-chief` ou `/dispatch:agents:dispatch-chief`
+
+---
+
+## 🧪 DESIGN-TESTING (Instalado ✅)
+
+**Propósito:** Comprehensive UI/UX testing — design, events, fluxos, clicks, forms, backend
+
+**Quando usar:**
+- Testes intensivos de design e interações
+- Cobertura de eventos (click, hover, keydown, etc.)
+- Fluxos de usuário (navegação, wizard, modais)
+- Validação de formulários e campos
+- Estados de controles (enabled/disabled, visible/hidden, loading)
+- Integração com backend (API responses na UI)
+- Regressão antes de release
+
+**Oferece:**
+- 10 agentes especializados (design-chief, 3 tier agents, 6 specialists)
+- 60+ cenários de teste por tela
+- Cobertura de 7 áreas: Design, Events, Flows, Forms, State, Backend, Combinations
+- Saída em formato PASS/FAIL/N/A com severity badges
+- Sign-off table para governança
+- Event registry (30+ tipos de eventos)
+
+**Entrada:** `@design-chief` ou `/design-testing:agents:design-chief`
+
+**Exemplo de uso:**
+```
+@design-chief
+
+Por favor teste a tela FrmTarefaDepositoLayoutSepara.
+Ela tem: combo boxes, buttons, grid, mode switching.
+Cubra: design, eventos, fluxos, estados, backend.
+```
 
 ---
 
