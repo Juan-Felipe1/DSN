@@ -10,6 +10,61 @@
           }
         ],
         "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\\\Users\\\\DSV-07\\\\Desktop\\\\DSN\\\\squads\\\\dispatch\\\\scripts\\\\log-task-start.py\"",
+            "timeout": 5
+          }
+        ],
+        "matcher": "SubagentStart"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\\\Users\\\\DSV-07\\\\Desktop\\\\DSN\\\\squads\\\\dispatch\\\\scripts\\\\check-wave-complete.py\"",
+            "timeout": 5
+          }
+        ],
+        "matcher": "SubagentStop"
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\\\Users\\\\DSV-07\\\\Desktop\\\\DSN\\\\squads\\\\dispatch\\\\scripts\\\\save-dispatch-state.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\\\Users\\\\DSV-07\\\\Desktop\\\\DSN\\\\squads\\\\dispatch\\\\scripts\\\\reload-dispatch-context.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:\\\\Users\\\\DSV-07\\\\Desktop\\\\DSN\\\\squads\\\\dispatch\\\\scripts\\\\log-task-failure.py\"",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
