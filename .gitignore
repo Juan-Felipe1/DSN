@@ -1,0 +1,36 @@
+# Personal Workspace (User's temporary folder)
+JDE/
+
+# Environment Variables (Sensitive)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if used)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDEs
+.vscode/settings.local.json
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+.temp/
+_temp/
